@@ -1,20 +1,12 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
   imports: [],
   templateUrl: './skills.html',
-  styleUrl: './skills.scss',
-  encapsulation: ViewEncapsulation.None
+  styleUrl: './skills.scss'
 })
 export class Skills {
-  skills = [
-    { name: 'Graphic Designing', value: 85 },
-    { name: 'Web Designing',     value: 70 },
-    { name: 'Microsoft Word',    value: 60 },
-    { name: 'Affinity Designer', value: 75 },
-    { name: 'MS Powerpoint',     value: 50 },
-    { name: 'Corel | Draw',      value: 65 },
-  ];
+  @Input() skills: { name: string; value: number }[] = [];
 }

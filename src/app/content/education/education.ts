@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-education',
@@ -8,15 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './education.scss'
 })
 export class Education {
-  isOpen = false;
+  @Input() educations: { title: string; place: string; date: string; description: string }[] = [];
+  @Output() accordionToggled = new EventEmitter<boolean>();
 
-  educations = [
-    { title: 'MASTER OF CREATIVE ARTS', place: 'University Name', date: '2018 - Present', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod facilisis.' },
-    { title: 'MASTER OF DESIGN', place: 'University Name', date: '2015 – 2017', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod facilisis.' },
-    { title: 'MARKETING OFFICER', place: 'University Name', date: '2010 – 2012', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod facilisis.' },
-  ];
+  isOpen = false;
 
   toggle() {
     this.isOpen = !this.isOpen;
+    this.accordionToggled.emit(this.isOpen);
   }
 }
