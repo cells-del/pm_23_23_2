@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-experience',
@@ -8,9 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './experience.scss'
 })
 export class Experience {
-  experiences = [
-    { title: 'WEB DESIGNER', date: '2018 – Present', company: 'Company Name / Location', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-    { title: 'GRAPHIC DESIGNER', date: '2015 – 2018', company: 'Company Name / Location', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-    { title: 'MARKETING MANAGER', date: '2010 – 2015', company: 'Company Name / Location', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' },
-  ];
+  @Input() experiences: { title: string; date: string; company: string; description: string }[] = [];
 }

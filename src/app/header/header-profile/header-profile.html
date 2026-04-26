@@ -10,7 +10,15 @@
       <div class="name-row">
         <span class="text-hello">{{ greeting }}</span>
         <span class="text-intro">{{ intro }}</span>
-        <span class="text-4">{{ firstName }} {{ lastName }}</span>
+        @if (isEditing) {
+          <input [(ngModel)]="editFirstName" placeholder="Імʼя" />
+          <input [(ngModel)]="editLastName" placeholder="Прізвище" />
+          <button (click)="saveEdit()">💾</button>
+          <button (click)="cancelEdit()">✖</button>
+        } @else {
+          <span class="text-4">{{ firstName }} {{ lastName }}</span>
+          <button class="btn-edit" (click)="startEdit()">✏️</button>
+        }
       </div>
 
       <div class="text-5">

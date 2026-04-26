@@ -1,21 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header-profile',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './header-profile.html',
   styleUrl: './header-profile.scss'
 })
 export class HeaderProfile {
+  @Input() firstName: string = '';
+  @Input() lastName: string = '';
+  @Input() middleName: string = '';
+  @Input() subtitle: string[] = [];
+  @Input() aboutText1: string = '';
+  @Input() aboutText2: string = '';
+  @Output() saveName = new EventEmitter<{ firstName: string; lastName: string }>();
+
   greeting = 'Hello.';
   intro = "I'm";
-  firstName = 'John';
-  middleName = 'A.';
-  lastName = 'Doe';
 
-  subtitle = ['And', 'I', 'am', 'A', 'Graphic', 'Designer'];
+  isEditing = false;
+  editFirstName = '';
+  editLastName = '';
 
-  aboutText1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.';
-  aboutText2 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ip Lorem ipsum dolor sit amet, consectetur adipiscing aliqua. Quis ip';
+  startEdit() {
+    this.editFirstName = this.firstName;
+    this.editLastName = this.lastName;
+    this.isEditing = true;
+  }
+
+  cancelEdit() {
+    this.isEditing = false;
+  }
+
+  saveEdit() {
+    this.firstName = this.editFirstName;
+    this.lastName = this.editLastName;
+    this.isEditing = false;
+    this.saveName.emit({ firstName: this.firstName, lastName: this.lastName });
+  }
 }

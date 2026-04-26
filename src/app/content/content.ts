@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Education } from './education/education';
 import { Experience } from './experience/experience';
 
@@ -10,16 +10,12 @@ import { Experience } from './experience/experience';
   styleUrl: './content.scss'
 })
 export class Content {
-  educations = [
-    { title: 'MASTER OF CREATIVE ARTS', place: 'University Name', date: '2018 - Present', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod facilisis.' },
-    { title: 'MASTER OF DESIGN',        place: 'University Name', date: '2015 – 2017',   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod facilisis.' },
-    { title: 'MARKETING OFFICER',       place: 'University Name', date: '2010 – 2012',   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod facilisis.' },
-  ];
+  @Input() educations: any[] = [];
+  @Input() experiences: any[] = [];
 
   isEducationOpen = false;
 
   onAccordionToggled(isOpen: boolean) {
     this.isEducationOpen = isOpen;
-    console.log('Акордеон:', isOpen ? 'відкритий' : 'закритий');
   }
 }
